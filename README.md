@@ -1,4 +1,4 @@
-# LRP for EfficientNet-B0 of 
+# LRP for EfficientNet-B0 from https://github.com/lukemelas/EfficientNet-PyTorch 
 
 ### Acknowledgements
 
