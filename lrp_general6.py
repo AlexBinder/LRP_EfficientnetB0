@@ -126,7 +126,7 @@ def get_lrpwrapperformodule(module, lrp_params, lrp_layer2method, thisis_inputco
       
 
       if type(autogradfunction) == conv2d_beta0_wrapper_fct: # dont want test for derived classes but equality
-        return oneparam_wrapper_class(module, autogradfunction = autogradfunction, parameter1 = lrp_params['conv2d_ignorebias'] )
+        return oneparam_wrapper_class(module, autogradfunction = autogradfunction, parameter1 = lrp_params['conv2d_ignorebias'] )    
       elif type(autogradfunction) == conv2d_betaany_wrapper_fct: 
         return twoparam_wrapper_class(module, autogradfunction = autogradfunction, parameter1 = lrp_params['conv2d_ignorebias'], parameter2 = torch.tensor( lrp_params['conv2d_beta']) )
       elif type(autogradfunction) == conv2d_betaadaptive_wrapper_fct: 
@@ -293,7 +293,7 @@ def bnafterconv_overwrite_intoconv(conv,bn): #after visatt
     #print( 'w/s, conv.bias', (w/s), conv.bias )
 
     if conv.bias is None:
-      conv.bias = torch.nn.Parameter((0 - m) * (w / s) + b, dtype = conv.weight.dtype )
+      conv.bias = torch.nn.Parameter((0 - m) * (w / s) + b )
     else:
       conv.bias = torch.nn.Parameter(( conv.bias - m) * (w / s) + b)
     #print( ' conv.bias new',  conv.bias )
